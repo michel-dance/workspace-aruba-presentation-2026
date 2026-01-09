@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workspace Aruba | Technology 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a;
+      --dune: #0a0f1f;
+      --amber: #f9a826;
+      --sand: #fef9ee;
+      --muted: #94a3b8;
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.18);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Manrope", "Space Grotesk", "Segoe UI", sans-serif;
+      color: #f8fafc;
+      background: linear-gradient(135deg, var(--dune), #0b1a32 45%, #08121f);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 18px 72px;
+      position: relative;
+    }
+    header {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      padding: 32px;
+      background: radial-gradient(circle at 20% 20%, rgba(249, 168, 38, 0.24), transparent 40%),
+                  radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.16), transparent 35%),
+                  linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(8, 15, 30, 0.94));
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+    .title {
+      font-size: clamp(28px, 4vw, 42px);
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      margin: 0 0 20px;
+      color: var(--muted);
+      max-width: 700px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin-bottom: 12px;
+    }
+    .badge svg { width: 18px; height: 18px; }
+    section {
+      margin-top: 36px;
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.24);
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+    }
+    p {
+      margin: 0 0 14px;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 18px;
+      margin: 10px 0 0;
+      color: #dbeafe;
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(249, 168, 38, 0.12), transparent 35%);
+      pointer-events: none;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(249, 168, 38, 0.12);
+      color: #fcd34d;
+      border: 1px dashed rgba(249, 168, 38, 0.4);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    iframe {
+      width: 100%;
+      min-height: 220px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .accent-rail {
+      height: 3px;
+      width: 120px;
+      background: linear-gradient(90deg, #f9a826, #f97316, #22d3ee);
+      border-radius: 999px;
+      margin: 10px 0 18px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+    .orb {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(249, 168, 38, 0.36), transparent 55%);
+      filter: blur(24px);
+      top: -40px;
+      right: -20px;
+      pointer-events: none;
+    }
+    .orb.secondary {
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.26), transparent 55%);
+      width: 140px;
+      height: 140px;
+      top: 120px;
+      left: -40px;
+    }
+    @media (max-width: 720px) {
+      header, section { padding: 22px; }
+      .meta span { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 8h18v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z"/>
+          <path d="M7 8V6a5 5 0 0 1 10 0v2"/>
+        </svg>
+        Workspace Aruba · Technology 2026
+      </div>
+      <h1 class="title">State of the Union: Rail Technology & Automation</h1>
+      <p class="subtitle">
+        A concise walkthrough of ProgressRail's automation vision, the Talos Train Automation program,
+        and the people behind it—crafted for the Workspace Aruba leadership team.
+      </p>
+      <div class="meta">
+        <span>Standalone webpage · No build tools required</span>
+        <span>Embedded video demos</span>
+        <span>Quick-read cards for team & products</span>
+      </div>
+      <div class="orb"></div>
+      <div class="orb secondary"></div>
+    </header>
+
+    <section aria-labelledby="about">
+      <h2 id="about">Presenter · Michel Lacle</h2>
+      <div class="accent-rail"></div>
+      <p>Senior Software Engineer @ ProgressRail (a Caterpillar Company) with a focus on advanced rail technology and automation.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Experience</h3>
+          <ul>
+            <li>Plastiq · San Francisco, CA</li>
+            <li>Glassdoor · San Francisco, CA</li>
+            <li>Moody's Analytics · San Francisco, CA</li>
+            <li>adBrite (advertising) · San Francisco, CA</li>
+            <li>General Electric Transportation · Melbourne, FL</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Education</h3>
+          <p>Master's in Computer Science · Florida Tech</p>
+          <p>Bachelor's in Computer Engineering · Florida</p>
+          <a class="pill" href="https://thinksmart.life/" target="_blank" rel="noopener">Portfolio · thinksmart.life</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="team">
+      <h2 id="team">The Team · Advanced Rail Technology</h2>
+      <div class="accent-rail"></div>
+      <p>We deliver high-reliability systems that keep freight and mining railroads safe, efficient, and profitable.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Talos Train Automation</h3>
+          <p>Automated train handling for fuel efficiency and consistent operations—my sub-team.</p>
+        </div>
+        <div class="card">
+          <h3>Nitro Suite</h3>
+          <p>Network movement planning to orchestrate traffic flows and reduce congestion.</p>
+        </div>
+        <div class="card">
+          <h3>Uptime</h3>
+          <p>Predictive insights that surface locomotive repair needs before they impact service.</p>
+        </div>
+        <div class="card">
+          <h3>Powerview</h3>
+          <p>Event recording, fuel monitoring, and remote visibility to keep fleets accountable.</p>
+        </div>
+      </div>
+      <p style="margin-top:16px;">More at: <a class="pill" href="https://www.progressrail.com/en/Segments/RailTechnology.html" target="_blank" rel="noopener">ProgressRail · Rail Technology</a></p>
+    </section>
+
+    <section aria-labelledby="talos">
+      <h2 id="talos">Talos Train Automation · The Why</h2>
+      <div class="accent-rail"></div>
+      <div class="grid">
+        <div class="card">
+          <h3>Railroad Pain Points</h3>
+          <ul>
+            <li>Safety—hazardous materials demand predictable handling.</li>
+            <li>Fuel consumption—the dominant operating cost.</li>
+            <li>Aging operator fleet—talent pipeline is shrinking.</li>
+            <li>Maintenance—large fleets need proactive care.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Our Solution</h3>
+          <p>Caterpillar is building automated solutions across construction, manufacturing, mining, and rail.</p>
+          <p>Talos delivers automated handling that matches or exceeds expert engineers while improving fuel efficiency.</p>
+          <p class="pill">Goal: lead North America; expand to Brazil & Middle East</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="media">
+      <h2 id="media">Watch · Vision & Product</h2>
+      <div class="accent-rail"></div>
+      <div class="video-grid">
+        <div class="card">
+          <h3>Talos Train Automation</h3>
+          <p>Short intro to automated train handling.</p>
+          <iframe src="https://www.youtube.com/embed/wB6VC1JlldU" title="Talos Train Automation" allowfullscreen></iframe>
+        </div>
+        <div class="card">
+          <h3>Caterpillar CEO Joe Creed · CES Keynote</h3>
+          <p>How Caterpillar is positioning automation across industries.</p>
+          <iframe src="https://www.youtube.com/embed/-f3gTSRZlJI" title="Caterpillar CES Keynote" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
