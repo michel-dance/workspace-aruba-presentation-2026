@@ -29,6 +29,14 @@ Bacholors' in Computer Engineering @ Florida
 
 Website: https://thinksmart.life/
 
+## Caterpillar and ProgressRail
+
+ProgressRail is a subsidiary of Caterpillar. 
+
+Here are the Caterpillar divisions: caterpillar-divisions.png.
+
+
+
 ## My team
 
 I work in the Advanced Rail Technology team of ProgressRail, a Caterpillar Company. 
