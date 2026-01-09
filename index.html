@@ -165,6 +165,33 @@
       border-radius: 999px;
       border: 1px solid var(--border);
     }
+    .media {
+      padding: 0;
+      overflow: hidden;
+    }
+    .media img {
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      object-fit: cover;
+      max-height: 260px;
+      cursor: zoom-in;
+    }
+    .media .caption {
+      padding: 14px 16px 16px;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06));
+    }
+    .media .caption h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+    .media .caption p {
+      margin: 0;
+      color: #dce3f1;
+      font-size: 14px;
+    }
     .orb {
       position: absolute;
       width: 180px;
@@ -174,6 +201,32 @@
       top: -40px;
       right: -20px;
       pointer-events: none;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 1000;
+    }
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox img {
+      max-width: min(960px, 92vw);
+      max-height: 82vh;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      background: #0b1326;
+      object-fit: contain;
     }
     .orb.secondary {
       background: radial-gradient(circle, rgba(56, 189, 248, 0.26), transparent 55%);
@@ -277,10 +330,73 @@
         <div class="card">
           <h3>Our Solution</h3>
           <p>Caterpillar is building automated solutions across construction, manufacturing, mining, and rail.</p>
+          <p>Heavy investment in digital transformation and an AI-first culture accelerates how we deliver.</p>
           <p>Talos delivers automated handling that matches or exceeds expert engineers while improving fuel efficiency.</p>
           <p class="pill">Goal: lead North America; expand to Brazil & Middle East</p>
         </div>
       </div>
+    </section>
+
+    <section aria-labelledby="field">
+      <h2 id="field">Field Deployment · BNSF Snapshot</h2>
+      <div class="accent-rail"></div>
+      <p>BNSF runs Talos-equipped locomotives across one of the largest rail footprints in North America.</p>
+      <div class="grid">
+        <figure class="card media">
+          <img class="zoomable" src="BNSF_Railway_system_map.svg.png" alt="BNSF Railway system map">
+          <figcaption class="caption">
+            <h3>Railway Map</h3>
+            <p>System-wide coverage where Talos supports fuel efficiency and safety.</p>
+          </figcaption>
+        </figure>
+        <figure class="card media">
+          <img class="zoomable" src="progress-rail-emd-locomotive.jpeg" alt="ProgressRail locomotive">
+          <figcaption class="caption">
+            <h3>Locomotive Example</h3>
+            <p>BNSF operates mixed fleets, including ProgressRail locomotives running Talos.</p>
+          </figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:14px;">BNSF owns locomotives from various manufacturers; Talos ships as a hardware module that integrates across these fleets.</p>
+    </section>
+
+    <section aria-labelledby="hardware">
+      <h2 id="hardware">Hardware & Cab Experience</h2>
+      <div class="accent-rail"></div>
+      <div class="grid">
+        <div class="card">
+          <h3>Multi-slot Talos Hardware</h3>
+          <p>We deliver Talos in a modular enclosure with multiple expansion slots so railroads can combine automation with other onboard products.</p>
+          <p>The flexibility contrasts with single-product boxes in the market.</p>
+        </div>
+        <figure class="card media">
+          <img class="zoomable" src="event-recorder-box.jpeg" alt="Event recorder product box">
+          <figcaption class="caption">
+            <h3>Reference: Event Recorder</h3>
+            <p>A one-product box common in the industry—Talos offers broader expandability.</p>
+          </figcaption>
+        </figure>
+        <figure class="card media">
+          <img class="zoomable" src="talos-display.jpeg" alt="Talos driver display">
+          <figcaption class="caption">
+            <h3>Cab Interface</h3>
+            <p>Engineers engage automation through a clean cab display that keeps situational awareness high.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="flow">
+      <h2 id="flow">How Talos Operates</h2>
+      <div class="accent-rail"></div>
+      <p>High-level view of Talos automation flow across sensing, decision-making, and control.</p>
+      <figure class="card media">
+        <img class="zoomable" src="talos-operation-info.jpeg" alt="Talos operation high level diagram">
+        <figcaption class="caption">
+          <h3>Automation Flow</h3>
+          <p>Data ingestion, on-board intelligence, and actuation working together for safer, smoother runs.</p>
+        </figcaption>
+      </figure>
     </section>
 
     <section aria-labelledby="media">
@@ -300,5 +416,33 @@
       </div>
     </section>
   </main>
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const zoomables = document.querySelectorAll('.zoomable');
+
+    zoomables.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || 'Expanded image';
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+      }
+    });
+  </script>
 </body>
 </html>

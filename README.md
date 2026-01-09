@@ -67,6 +67,24 @@ Our group builds the Talos Train Automation software that allows the engineer to
 https://www.progressrail.com/en/Segments/RailTechnology/Talos.html
 
 
+### The Talos product installed on a BNSF locomotive.
+
+Here is the railway map: BNSF_Railway_system_map.svg.png
+
+BNSF owns locomotives from various manufactuers including ProgressRail.
+
+Here is a ProgressRail locomotive: progress-rail-emd-locomotive.jpeg
+
+We sell Talos in a hardware component box with multiple product slots where we include products purchased by the railroad.
+
+Here is an example of the event-recorder product box: event-recorder-box.jpeg . This is a one box one product solution, so not as versatile as our Talos box with multiple expansion slots.
+
+Here is an example of what the engineer sees: talos-display.jpeg
+
+Behind the scene this is the high level Talos operation: talos-operation-info.jpeg
+
+
+
 
 
 
